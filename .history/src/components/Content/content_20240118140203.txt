@@ -1,0 +1,5 @@
+the break -down of content page is: 
+1) content(includes main tag)
+2) listitem(inlcues <ul> tag</ul>)
+3) lineItem(includes <li> tag </li> for each item)
+
