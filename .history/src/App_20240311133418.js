@@ -81,7 +81,6 @@ function App() {
     ); //ternary condition
     setItems(listItems);
 
-    // http PATCH method
     const myItem = listItems.filter((item) => item.id === id);
     const updateOptions = {
       method: "PATCH",
@@ -100,7 +99,6 @@ function App() {
     const listItems = items.filter((item) => item.id !== id);
     setItems(listItems);
 
-    // http delete method
     const deleteOptions = { method: "DELETE" };
     const reqUrl = `${API_URL}/${id}`;
     const result = await apiRequest(reqUrl, deleteOptions);

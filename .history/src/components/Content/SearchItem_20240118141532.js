@@ -1,5 +1,0 @@
-const SearchItem = () => {
-
-}
-
-export default 

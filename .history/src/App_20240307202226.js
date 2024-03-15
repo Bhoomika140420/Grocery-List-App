@@ -1,21 +1,22 @@
-import Header from "./Header";
-import AddItem from "./AddItem";
-import SearchItem from "./SearchItem";
-import Content from "./Content";
-import Footer from "./Footer";
+import React from "react";
+import Header from "Header";
+import AddItem from "AddItems";
+import SearchItem from "SearchItem";
+import Content from "Content";
+import Footer from "Footer";
 import { useState, useEffect } from "react";
-import apiRequest from "./apiRequest";
+import apiRequest from "apiRequest";
 
 const arr = () => {
   // const shoppingList = localStorage.getItem("shoppingList");
   // return shoppingList ? JSON.parse(shoppingList) : [];
-  return [];
+  // return [];
 };
 
 function App() {
   const API_URL = "http://localhost:3500/items";
 
-  const [items, setItems] = useState(arr());
+  const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState("");
   const [search, setSearch] = useState("");
   const [fetchError, setFetchError] = useState(null);
@@ -62,8 +63,6 @@ function App() {
     const listItems = [...items, myNewItem];
     setItems(listItems);
 
-    //crud operations
-
     const postOptions = {
       method: "POST",
       headers: {
@@ -81,7 +80,6 @@ function App() {
     ); //ternary condition
     setItems(listItems);
 
-    // http PATCH method
     const myItem = listItems.filter((item) => item.id === id);
     const updateOptions = {
       method: "PATCH",
@@ -90,7 +88,6 @@ function App() {
       },
       body: JSON.stringify({ checked: myItem[0].checked }),
     };
-
     const reqUrl = `${API_URL}/${id}`;
     const result = await apiRequest(reqUrl, updateOptions);
     if (result) setFetchError(result);
@@ -100,7 +97,6 @@ function App() {
     const listItems = items.filter((item) => item.id !== id);
     setItems(listItems);
 
-    // http delete method
     const deleteOptions = { method: "DELETE" };
     const reqUrl = `${API_URL}/${id}`;
     const result = await apiRequest(reqUrl, deleteOptions);

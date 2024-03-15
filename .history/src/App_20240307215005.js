@@ -62,8 +62,6 @@ function App() {
     const listItems = [...items, myNewItem];
     setItems(listItems);
 
-    //crud operations
-
     const postOptions = {
       method: "POST",
       headers: {
@@ -81,7 +79,6 @@ function App() {
     ); //ternary condition
     setItems(listItems);
 
-    // http PATCH method
     const myItem = listItems.filter((item) => item.id === id);
     const updateOptions = {
       method: "PATCH",
@@ -90,7 +87,6 @@ function App() {
       },
       body: JSON.stringify({ checked: myItem[0].checked }),
     };
-
     const reqUrl = `${API_URL}/${id}`;
     const result = await apiRequest(reqUrl, updateOptions);
     if (result) setFetchError(result);
@@ -100,7 +96,6 @@ function App() {
     const listItems = items.filter((item) => item.id !== id);
     setItems(listItems);
 
-    // http delete method
     const deleteOptions = { method: "DELETE" };
     const reqUrl = `${API_URL}/${id}`;
     const result = await apiRequest(reqUrl, deleteOptions);
