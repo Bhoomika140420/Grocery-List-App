@@ -3,24 +3,17 @@ import AddItem from "./AddItem";
 import SearchItem from "./SearchItem";
 import Content from "./Content";
 import Footer from "./Footer";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import apiRequest from "./apiRequest";
 
 const arr = () => {
-  // const shoppingList = localStorage.getItem("shoppingList");
-  // return shoppingList ? JSON.parse(shoppingList) : [];
+  const shoppingList = localStorage.getItem("shoppingList");
+  return shoppingList ? JSON.parse(shoppingList) : [];
   return [];
 };
 
 function App() {
-  // const API_URL = "http://localhost:3500/items";
-
-  const API_URL = fetch("http://localhost:3500/items")
-    .then((response) => response.json())
-    .then((data) => {
-      items(data);
-    })
-    .catch((error) => console.error("Error fetching data:", error));
+  const API_URL = "http://localhost:3005/items";
 
   const [items, setItems] = useState(arr());
   const [newItem, setNewItem] = useState("");
@@ -61,7 +54,7 @@ function App() {
     setTimeout(() => {
       (async () => await fetchItems())(); // it reload the page after 2 seconds, a return fuction to fetchItems
     }, 2000);
-  }, [API_URL]);
+  }, []);
 
   const addItem = async (item) => {
     const id = items.length ? items[items?.length - 1].id + 1 : 1;

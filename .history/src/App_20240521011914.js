@@ -7,8 +7,8 @@ import React, { useState, useEffect } from "react";
 import apiRequest from "./apiRequest";
 
 const arr = () => {
-  // const shoppingList = localStorage.getItem("shoppingList");
-  // return shoppingList ? JSON.parse(shoppingList) : [];
+  const shoppingList = localStorage.getItem("shoppingList");
+  return shoppingList ? JSON.parse(shoppingList) : [];
   return [];
 };
 
@@ -61,7 +61,7 @@ function App() {
     setTimeout(() => {
       (async () => await fetchItems())(); // it reload the page after 2 seconds, a return fuction to fetchItems
     }, 2000);
-  }, [API_URL]);
+  }, []);
 
   const addItem = async (item) => {
     const id = items.length ? items[items?.length - 1].id + 1 : 1;
